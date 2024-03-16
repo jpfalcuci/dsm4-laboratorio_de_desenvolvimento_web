@@ -1,0 +1,104 @@
+openapi: 3.0.3
+
+info:
+  title: API Aula
+  version: 1.0.0
+  description: API da aula de laboratório web com api first
+  contact:
+    name: Sistemax
+    email: contato@sistemax.com.br
+
+servers:
+  - url: http://sistemax.com.br/api
+  - url: http://sistemax-stage.com.br/api
+
+tags:
+  - name: Pacientes
+    description: Operações relacionadas a pacientes
+    externalDocs:
+      url: http://sistemax.com.br/docs/pacientes
+
+paths:
+  /pacientes:
+    post:
+      tags:
+        - Pacientes
+      summary: Cadastra um novo paciente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  example: João
+                  description: Nome do paciente
+                cpf:
+                  type: string
+                  example: 123.456.789-00
+                  description: CPF do paciente
+                data_nascimento:
+                  type: string
+                  example: 1992-09-18
+                  format: date
+                  description: Data de nascimento do paciente
+                endereco:
+                  type: object
+                  properties:
+                    cidade:
+                      type: string
+                      example: Patrocínio Paulista
+                      description: Cidade do paciente
+                    estado:
+                      type: string
+                      example: SP
+                      description: Estado UF
+                plano_saude:
+                    type: string
+                    description: Plano de saúde do paciente
+                    enum:
+                      - sim
+                      - nao
+      responses:
+        '201':
+          description: Paciente cadastrado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uuid:
+                    type: string
+                    example: 123e4567-e89b-12d3-a456-426614174000
+                    description: Identificador único do paciente
+                  nome:
+                    type: string
+                    example: João
+                    description: Nome do paciente
+                  cpf:
+                    type: string
+                    example: 123.456.789-00
+                    description: CPF do paciente
+                  data_nascimento:
+                    type: string
+                    example: 1992-09-18
+                    format: date
+                    description: Data de nascimento do paciente
+                  endereco:
+                    type: object
+                    properties:
+                      cidade:
+                        type: string
+                        example: Patrocínio Paulista
+                        description: Cidade do paciente
+                      estado:
+                        type: string
+                        example: SP
+                        description: Estado UF
+                  plano_saude:
+                      type: string
+                      description: Plano de saúde do paciente
+                      enum:
+                        - sim
+                        - nao
