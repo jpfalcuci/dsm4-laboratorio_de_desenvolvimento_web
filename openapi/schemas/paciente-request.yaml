@@ -1,0 +1,34 @@
+definitions:
+  PacienteRequest:
+    type: object
+    properties:
+      nome:
+        type: string
+        example: João
+        description: Nome do paciente
+      cpf:
+        type: string
+        example: 123.456.789-00
+        description: CPF do paciente
+      data_nascimento:
+        type: string
+        example: 1992-09-18
+        format: date
+        description: Data de nascimento do paciente
+      endereco:
+        type: object
+        properties:
+          cidade:
+            type: string
+            example: Patrocínio Paulista
+            description: Cidade do paciente
+          estado:
+            type: string
+            example: SP
+            description: Estado UF
+      plano_saude:
+        type: string
+        description: Plano de saúde do paciente
+        enum:
+          - sim
+          - nao

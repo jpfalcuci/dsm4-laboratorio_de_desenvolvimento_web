@@ -1,0 +1,60 @@
+openapi: 3.0.3
+
+info:
+  title: API Aula
+  version: 1.0.0
+  description: API da aula de laboratório web com api first
+  contact:
+    name: Sistemax
+    email: contato@sistemax.com.br
+
+servers:
+  - url: http://sistemax.com.br/api
+  - url: http://sistemax-stage.com.br/api
+
+tags:
+  - name: Pacientes
+    description: Operações relacionadas a pacientes
+    externalDocs:
+      url: http://sistemax.com.br/docs/pacientes
+
+paths:
+  /pacientes:
+    post:
+      tags:
+        - Pacientes
+      summary: Cadastra um novo paciente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PacienteRequest'
+      responses:
+        '201':
+          description: Paciente cadastrado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PacienteResponse'
+
+    get:
+      tags:
+        - Pacientes
+      summary: Retorna uma lista todos os pacientes
+      responses:
+        '200':
+          description: Lista de pacientes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PacienteResponse'
+
+components:
+  schemas:
+    PacienteRequest:
+      $ref: 'schemas/paciente-request.yaml#/definitions/PacienteRequest'
+    
+    PacienteResponse:
+      $ref: 'schemas/paciente-response.yaml#/definitions/PacienteResponse'
