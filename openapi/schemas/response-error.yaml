@@ -1,0 +1,18 @@
+definitions:
+  ResponseError:
+    type: object
+    properties:
+      descricao:
+        type: string
+        default: Request Inválido
+      detalhes:
+        type: array
+        items:
+          type: object
+          properties:
+            tipo:
+              type: string
+              example: Atributo requerido
+            descricao: 
+              type: string
+              default: data_nascimento

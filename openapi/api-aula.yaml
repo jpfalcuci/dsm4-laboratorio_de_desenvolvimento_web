@@ -9,8 +9,8 @@ info:
     email: contato@sistemax.com.br
 
 servers:
-  - url: http://sistemax.com.br/api
-  - url: http://sistemax-stage.com.br/api
+  - url: http://sistemax.com.br/api/v1
+  - url: http://sistemax-stage.com.br/api/v1
 
 tags:
   - name: Pacientes
@@ -47,14 +47,26 @@ paths:
           content:
             application/json:
               schema:
+                required: ["cpf"]
                 type: array
                 items:
                   $ref: '#/components/schemas/PacienteResponse'
+        '400':
+          description: Requisição inválida feita pelo cliente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseError'
 
 components:
   schemas:
     PacienteRequest:
       $ref: 'schemas/paciente-request.yaml#/definitions/PacienteRequest'
-    
+
     PacienteResponse:
       $ref: 'schemas/paciente-response.yaml#/definitions/PacienteResponse'
+
+    ResponseError:
+      $ref: 'schemas/response-error.yaml#/definitions/ResponseError'
