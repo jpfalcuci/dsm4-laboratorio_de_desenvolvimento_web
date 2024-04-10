@@ -1,0 +1,130 @@
+openapi: 3.0.3
+
+info:
+  title: Atividade 01
+  version: 1.0.0
+  description: Ativivdade 01 da aula de Laboratório de Desenvolvimento Web
+  contact:
+    name: LojaX
+    email: contato@lojax.com.br
+
+servers:
+  - url: http://lojax.com.br/api/v1
+  - url: http://lojax-stage.com.br/api/v1
+
+tags:
+  - name: Pedidos
+    description: Operações relacionadas a pedidos
+    externalDocs:
+      url: http://lojax.com.br/docs/pedidos
+
+paths:
+
+  /orders/:
+    get:
+      tags:
+        - Pedidos
+      summary: Retorna uma lista de pedidos
+      parameters:
+        - name: client.code
+          in: query
+          description: Código do cliente
+          schema:
+            type: integer
+            example: 1
+        - name: client.cpf
+          in: query
+          description: CPF do cliente
+          schema:
+            type: string
+            example: 123.456.789-00
+        - name: status
+          in: query
+          description: Status do pedido
+          schema:
+            type: string
+            enum:
+              - pago
+              - enviado
+              - aguardando_pagamento
+              - cancelado
+            example: pago
+        - name: date
+          in: query
+          description: Data do pedido
+          schema:
+            type: string
+            format: date
+            example: 2024-04-06
+        - name: date_greater
+          in: query
+          description: Data do pedido
+          schema:
+            type: string
+            format: date
+            example: 2024-04-06
+        - name: date_lesser
+          in: query
+          description: Data do pedido
+          schema:
+            type: string
+            format: date
+            example: 2024-04-06
+      responses:
+        '200':
+          description: Lista de pedidos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderResponse'
+
+  /orders/{id}/:
+    get:
+      tags:
+          - Pedidos
+      summary: Retorna um pedido específico
+      parameters:
+        - name: id
+          in: path
+          description: Código do pedido
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Pedido específico
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+  
+  /orders/{id}/items/:
+    get:
+      tags:
+          - Pedidos
+      summary: Retorna uma lista de itens de um pedido
+      parameters:
+        - name: id
+          in: path
+          description: Código do pedido
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Lista de itens do pedido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemsResponse'
+
+components:
+  schemas:
+    OrderResponse:
+      $ref: 'schemas/order-response.yaml#/definitions/OrderResponse'
+    ItemsResponse:
+      $ref: 'schemas/items-response.yaml#/definitions/ItemsResponse'

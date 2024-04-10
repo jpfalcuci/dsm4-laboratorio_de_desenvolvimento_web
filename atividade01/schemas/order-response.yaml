@@ -1,0 +1,63 @@
+definitions:
+
+  OrderResponse:
+    type: object
+    properties:
+      orderCode:
+        type: integer
+        example: 1
+        description: Código do pedido
+      date:
+        type: string
+        example: 2024-04-06
+        format: date
+        description: Data do pedido
+      client:
+        $ref: '#/definitions/Client'
+      status:
+        type: string
+        example: pago
+        description: Status do pedido
+        enum:
+          - pago
+          - enviado
+          - aguardando_pagamento
+          - cancelado
+      branch:
+        type: object
+        example:
+          code: 1
+          cep: 12345-678
+        properties:
+          code:
+            type: integer
+            description: Código da filial
+          cep:
+            type: string
+            description: CEP da filial
+      totalValue:
+        type: number
+        format: float
+        example: 100.00
+        description: Valor total do pedido
+
+  Client:
+    type: object
+    description: Informações do cliente
+    example:
+      code: 1
+      name: João
+      cpf: 123.456.789-00
+    properties:
+      code:
+        type: integer
+        example: 1
+        description: Código do cliente
+      name:
+        type: string
+        example: João
+        description: Nome do cliente
+      cpf:
+        type: string
+        example: 123.456.789-00
+        description: CPF do cliente

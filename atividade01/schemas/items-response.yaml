@@ -1,0 +1,36 @@
+definitions:
+
+  ItemsResponse:
+    type: array
+    items:
+      $ref: '#/definitions/ItemOrder'
+  
+  ItemOrder:
+    type: object
+    properties:
+      sequence:
+        type: integer
+        example: 1
+        description: Sequência do item
+      code:
+        type: integer
+        example: 1
+        description: Código do produto
+      description:
+        type: string
+        example: Produto X
+        description: Descrição do produto
+      quantity:
+        type: integer
+        example: 2
+        description: Quantidade do produto
+      unitValue:
+        type: number
+        format: float
+        example: 50.00
+        description: Valor unitário do produto
+      totalItem:
+        type: number
+        format: float
+        example: 100.00
+        description: Valor total do item
