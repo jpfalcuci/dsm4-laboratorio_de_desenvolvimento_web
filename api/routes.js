@@ -1,20 +1,18 @@
-const { getProducts, create } = require('./product-controller');
-const productSchema = require('./product-schema');
+const { getProducts, create } = require('./api/v1/product/product-controller');
+const { getProductsSchema } = require('./api/v1/product/product-schema');
 
 const routes = [
   {
     method: "GET",
-    path: "/products",
+    path: "/v1/products",
     handler: getProducts,
   },
   {
     method: "POST",
-    path: "/products",
+    path: "/v1/products",
     options: {
       handler: create,
-      validate: {
-        payload: productSchema,
-      },
+      validate: getProductsSchema,
     },
   },
 ];
