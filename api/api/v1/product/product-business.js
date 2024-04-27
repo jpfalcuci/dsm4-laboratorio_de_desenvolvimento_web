@@ -5,11 +5,18 @@ const create = async (product) => {
   return repository.save(product);
 };
 
-const list = async () => {
-  return repository.findAll();
+const list = async (query) => {
+  // lógica negócio
+  return repository.findAll(query);
 };
+
+const findById = async (id) => {
+  // lógica negócio
+  return repository.findById(id);
+}
 
 module.exports = {
   create,
   list,
+  findById,
 };

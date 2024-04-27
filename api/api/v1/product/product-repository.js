@@ -1,14 +1,29 @@
 const listProduct = [];
 
 const save = async (product) => {
-  product.id = Math.random() * 1000;
+  product.id = parseInt(Math.random() * 1000);
   listProduct.push(product);
 
   return product;
 };
 
-const findAll = async () => {
+const findAll = async (query) => {
+
+  const { name, status } = query;
+
+  if (name) {
+    return listProduct.filter((p) => p.name === name);
+  }
+
   return listProduct;
 };
 
-module.exports = { save, findAll };
+const findById = async (id) => {
+  return listProduct.find((p) => p.id === id);
+}
+
+module.exports = {
+  save,
+  findAll,
+  findById,
+};
