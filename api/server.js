@@ -6,6 +6,13 @@ const server = Hapi.server({
   host: "localhost",
 });
 
-routes.forEach((path) => server.route(path));
+const plugins = [
+  {
+    plugin: routes,
+    options: {
+      routesBaseDir: "./api",
+    }
+  },
+];
 
-module.exports = server;
+module.exports = { server, plugins };
