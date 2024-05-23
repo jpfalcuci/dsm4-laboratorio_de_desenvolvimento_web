@@ -1,21 +1,14 @@
+const productModel = require('./product-model');
 const listProduct = [];
 
 const save = async (product) => {
-  product.id = parseInt(Math.random() * 1000);
-  listProduct.push(product);
-
-  return product;
+  const x = await productModel.create(product, {plain: true});
+  console.log(x);
+  return x;
 };
 
 const findAll = async (query) => {
-
-  const { name, status } = query;
-
-  if (name) {
-    return listProduct.filter((p) => p.name === name);
-  }
-
-  return listProduct;
+  productModel.findAll();
 };
 
 const findById = async (id) => {
