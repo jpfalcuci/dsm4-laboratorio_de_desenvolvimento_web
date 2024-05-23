@@ -31,9 +31,13 @@ const getProducts = {
     name: Joi
       .string()
       .min(3),
+    quantity: Joi
+      .number()
+      .integer()
+      .min(1),
     status: Joi
       .string()
-      .valid('active', 'inactive')
+      .valid('active', 'inactive', 'pending')
       .default('active')
   })
 };

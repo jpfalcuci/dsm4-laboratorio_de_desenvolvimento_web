@@ -5,9 +5,9 @@ const create = async (product) => {
   return repository.save(product);
 };
 
-const list = async (query) => {
+const list = async (filter) => {
   // lógica negócio
-  return repository.findAll(query);
+  return repository.findAll(filter);
 };
 
 const findById = async (id) => {

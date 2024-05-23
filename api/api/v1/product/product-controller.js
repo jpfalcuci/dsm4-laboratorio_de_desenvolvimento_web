@@ -2,7 +2,8 @@ const business = require("./product-business");
 
 const getProducts = async (req, h) => {
 
-  const result = await business.list(req.query);
+  const { query } = req;
+  const result = await business.list(query);
 
   return h.response(result).code(200);
 };
