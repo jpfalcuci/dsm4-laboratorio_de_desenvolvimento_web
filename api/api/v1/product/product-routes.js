@@ -19,7 +19,7 @@ const plugin = {
         path: "/v1/products/{id}",
         options: {
           handler: productController.findById,
-          validate: productSchema.getByIdSchema,
+          validate: productSchema.getById,
         },
       },
       {
@@ -27,7 +27,15 @@ const plugin = {
         path: "/v1/products",
         options: {
           handler: productController.create,
-          validate: productSchema.createProductSchema,
+          validate: productSchema.createProduct,
+        },
+      },
+      {
+        method: "DELETE",
+        path: "/v1/products/{id}",
+        options: {
+          handler: productController.deleteById,
+          validate: productSchema.deleteById,
         },
       },
     ]);

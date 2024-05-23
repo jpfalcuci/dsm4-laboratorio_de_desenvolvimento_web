@@ -25,8 +25,17 @@ const findById = async (id) => {
   });
 };
 
+const deleteById = async (id) => {
+  productModel.destroy({
+    where: {
+      id: id
+    }
+  });
+};
+
 module.exports = {
   save,
   findAll,
   findById,
+  deleteById,
 };

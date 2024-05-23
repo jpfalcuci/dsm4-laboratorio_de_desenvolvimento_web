@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const createProductSchema = {
+const createProduct = {
   payload: Joi.object({
     name: Joi
       .string()
@@ -17,12 +17,21 @@ const createProductSchema = {
   })
 };
 
-const getByIdSchema = {
+const getById = {
   params: Joi.object({
     id: Joi
       .number()
       .integer()
       .required()
+  })
+};
+
+const deleteById = {
+  params: Joi.object({
+    id: Joi
+        .number()
+        .integer()
+        .required()
   })
 };
 
@@ -42,4 +51,4 @@ const getProducts = {
   })
 };
 
-module.exports = { createProductSchema, getByIdSchema, getProducts };
+module.exports = { createProduct, getById, getProducts, deleteById };
