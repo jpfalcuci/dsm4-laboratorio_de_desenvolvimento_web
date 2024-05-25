@@ -10,6 +10,8 @@ const plugin = {
         method: "GET",
         path: "/v1/costumers",
         options: {
+          tags : ['api'],
+          description: 'List of costumers',
           handler: costumerController.getCostumers,
           validate: costumerSchema.getCostumers,
         },
@@ -18,6 +20,8 @@ const plugin = {
         method: "GET",
         path: "/v1/costumers/{id}",
         options: {
+          tags : ['api'],
+          description: 'Get costumer by id',
           handler: costumerController.findById,
           validate: costumerSchema.getByIdSchema,
         },
@@ -26,6 +30,8 @@ const plugin = {
         method: "POST",
         path: "/v1/costumers",
         options: {
+          tags : ['api'],
+          description: 'Create a costumer',
           handler: costumerController.create,
           validate: costumerSchema.createCostumerSchema,
         },
@@ -34,8 +40,10 @@ const plugin = {
         method: "DELETE",
         path: "/v1/costumers/{id}",
         options: {
-            handler: costumerController.deleteById,
-            validate: costumerSchema.deleteCostumers,
+          tags : ['api'],
+          description: 'Delete a costumer',
+          handler: costumerController.deleteById,
+          validate: costumerSchema.deleteCostumers,
         },
       },
     ]);
