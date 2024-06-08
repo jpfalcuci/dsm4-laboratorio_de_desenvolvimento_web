@@ -1,7 +1,6 @@
 const business = require("./product-business");
 
 const getProducts = async (req, h) => {
-
   const { query } = req;
   const result = await business.list(query);
 
@@ -9,11 +8,13 @@ const getProducts = async (req, h) => {
 };
 
 const create = async (req, h) => {
+  const { payload } = request;
   try {
+    payload.categoryId = payload.category.id;
     const result = await business.create(request.payload);
     return h.response(result).code(201);
   } catch(error) {
-      console.log(error);
+    console.log(error);
   }
 };
 

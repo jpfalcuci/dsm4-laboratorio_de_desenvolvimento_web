@@ -14,6 +14,11 @@ const createProduct = {
       .integer()
       .positive()
       .required(),
+    category: Joi.object({
+      id: Joi
+        .number()
+        .integer()
+    })
   })
 };
 
@@ -29,9 +34,9 @@ const getById = {
 const deleteById = {
   params: Joi.object({
     id: Joi
-        .number()
-        .integer()
-        .required()
+      .number()
+      .integer()
+      .required()
   })
 };
 
