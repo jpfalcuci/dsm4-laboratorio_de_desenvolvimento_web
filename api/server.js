@@ -33,8 +33,7 @@ const plugins = [
       routesBaseDir: "./api",
     }
   },
+  ...swaggerPlugin,
 ];
-
-plugins.push(...swaggerPlugin);
 
 module.exports = { server, plugins };

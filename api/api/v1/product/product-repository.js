@@ -27,18 +27,12 @@ const findById = async (id) => {
       model: Category,
       required: false // left
     }],
-    where: {
-      id: id
-    }
+    where: { id }
   });
 };
 
 const deleteById = async (id) => {
-  productModel.destroy({
-    where: {
-      id: id
-    }
-  });
+  productModel.destroy({ where: { id } });
 };
 
 module.exports = {
