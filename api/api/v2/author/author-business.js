@@ -1,5 +1,4 @@
 const repository = require("./author-repository");
-const bookRepository = require("../book/book-repository");
 
 const create = async (author) => {
   return repository.save(author);
@@ -14,8 +13,9 @@ const findById = async (id) => {
 };
 
 const deleteById = async (id) => {
-  const books = await bookRepository.findAll({authorId: id});
-  if (books.length > 0) { // verifica se o autor possui livros associados
+  const author = await findById(id);
+  console.log("Length: ", author.books.length, "id: ", id)
+  if (author.books.length > 0) { // verifica se o autor possui livros associados
     throw new Error("Cannot delete author with associated books");
   }
   return repository.deleteById(id);

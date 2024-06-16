@@ -1,15 +1,29 @@
 const authorModel = require('./author-model');
+const bookModel = require('../book/book-model');
 
 const save = async (author) => {
   return authorModel.create(author);
 };
 
 const findAll = async () => {
-  return authorModel.findAll();
+  return authorModel.findAll({
+    include: [{
+      model: bookModel,
+      as: 'books',
+      attributes: ['id', 'title']
+    }]
+  });
 };
 
 const findById = async (id) => {
-  return authorModel.findOne({ where: { id } });
+  return authorModel.findOne({
+    include: [{
+      model: bookModel,
+      as: 'books',
+      attributes: ['id', 'title']
+    }],
+    where: { id: id }
+  });
 };
 
 const deleteById = async (id) => {

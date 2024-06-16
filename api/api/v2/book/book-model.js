@@ -39,6 +39,7 @@ const Book = database.sequelize.define('Book', {
   tableName: 'tb_book'
 });
 
-Book.belongsTo(Author, {foreignKey: 'authorId'});
+Author.hasMany(Book, { as: 'books', foreignKey: 'authorId' });
+Book.belongsTo(Author, { foreignKey: 'authorId' });
 
 module.exports = Book;
